@@ -13,28 +13,9 @@ jpa 并不是一个框架，是一类框架的总称，持久层框架 Hibernate
 
 ####  spring data jpa常用的 jpa 的配置
 
-下面所有演示的代码均来自我个人 github 的 spring-data-jpa 仓库，仓库地址：[spring-data-jpa] ， 读者可以clone 下来运行本项目，验证下面讲的所有知识点。
-
 项目的目录结构大致如下所示： 
 
-├── README.md
-├── pom.xml
-├── springbootjpa.iml
-├── src
-│   └── main
-│       ├── java
-│       │   └── com
-│       │       └── zempty
-│       │           └── springbootjpa
-│       │               ├── SpringbootjpaApplication.java
-│       │               ├── controller
-│       │               ├── entity
-│       │               ├── repository
-│       │               └── service
-│       │                   └── impl
-│       └── resources
-│           ├── application.properties
-│           └── project.http
+![](./img/项目结构.png)
 
 README.md 详细记录了项目的各个知识点的总结说明；
 pom.xml 引入了 spring data jpa 常用的 maven 依赖；
