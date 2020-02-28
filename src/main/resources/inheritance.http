@@ -1,0 +1,97 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection) or
+# paste cURL into the file and request will be converted to HTTP Request format.
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+
+POST http://localhost:8082/a
+Content-Type: application/json
+
+{
+  "name": "test",
+  "value": "hello",
+  "test" : "taskgjag"
+}
+
+###
+POST http://localhost:8082/b
+Content-Type: application/json
+
+{
+  "name": "zempty",
+  "value": "zhao"
+}
+
+###
+GET http://localhost:8082/all_B1
+Accept: application/json
+
+###
+GET http://localhost:8082/all_A1
+Accept: application/json
+
+###
+POST http://localhost:8082/a2
+Content-Type: application/json
+
+{
+  "time": "today",
+  "location": "singapore",
+  "name"  : "zempty",
+  "value" : "zhao"
+}
+
+###
+POST http://localhost:8082/b2
+Content-Type: application/json
+
+{
+  "job": "IT",
+  "date": "tomorrow",
+  "name"  : "zempty",
+  "value" : "zhao"
+}
+
+###
+GET http://localhost:8082/a2s
+Accept: application/json
+
+###
+GET http://localhost:8082/b2s
+
+###
+POST http://localhost:8082/a3
+Content-Type: application/json
+
+{
+  "name": "test",
+  "value":"zempty",
+  "job": "IT",
+  "duty": "programmer"
+}
+
+###
+POST http://localhost:8082/b3
+Content-Type: application/json
+
+{
+  "name": "zempty",
+  "value": "zhao",
+  "brith": "2020",
+  "date": "03-20"
+}
+
+###
+GET http://localhost:8082/all_B3
+Content-Type: application/json
+
+{}
+
+###
+GET http://localhost:8082/all_A3
+Content-Type: application/json
+
+{}

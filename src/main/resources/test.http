@@ -1,0 +1,57 @@
+POST http://localhost:8082/save_student
+Content-Type: application/json
+
+{}
+
+###
+POST http://localhost:8082/save_room
+Content-Type: application/json
+
+{}
+
+###
+POST http://localhost:8082/save_teacher
+Content-Type: application/json
+
+{}
+
+###
+PUT http://localhost:8082/update_student/6
+Content-Type: application/json
+
+{}
+
+###
+DELETE http://localhost:8082/delete_student/5
+Content-Type: application/json
+
+{}
+
+###
+DELETE http://localhost:8082/delete_room/8
+Content-Type: application/json
+
+{}
+
+### find 关键字，查找名字是 zempty 的学生
+GET http://localhost:8082/find/zempty
+
+### cout 关键字统计，统计名字是 zempty 学生的数量
+GET http://localhost:8082/count/zempty
+
+### delete 关键字，删除名字是zempty 的学生
+DELETE http://localhost:8082/delete/zempty
+
+###get 关键字查询，查询名字是test ,年龄是0的学生
+GET http://localhost:8082/get/test/0
+
+### JPQL 的查询形式
+GET http://localhost:8082/test1/IT
+
+### sql 的查询形式
+GET http://localhost:8082/test2/IT
+
+###
+GET http://localhost:8082/sort/java
+
+###

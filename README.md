@@ -15,7 +15,7 @@ jpa 并不是一个框架，是一类框架的总称，持久层框架 Hibernate
 
 项目的目录结构大致如下所示： 
 
-![](./img/项目结构.png)
+![项目结构图](./img/structure.png)
 
 README.md 详细记录了项目的各个知识点的总结说明；
 pom.xml 引入了 spring data jpa 常用的 maven 依赖；
