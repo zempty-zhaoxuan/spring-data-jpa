@@ -1,3 +1,36 @@
+目录
+----
+   * [谈一谈 jpa](#谈一谈-jpa)
+   * [spring data jpa常用的 jpa 的配置](#spring-data-jpa常用的-jpa-的配置)
+   * [类映射到数据库表的常用注解分析](#类映射到数据库表的常用注解分析)
+   * [类的继承分析](#类的继承分析)
+   * [类之间的关系分析](#类之间的关系分析)
+      * [OneToOne](#onetoone)
+      * [@OneToMany](#onetomany)
+      * [@ManyToOne](#manytoone)
+      * [@ManyToMany](#manytomany)
+   * [进一步剖析级联操作（cascade)](#进一步剖析级联操作cascade)
+      * [保存学生的时候，级联保存课桌](#保存学生的时候级联保存课桌)
+      * [更新学生，级联更新教室数据](#更新学生级联更新教室数据)
+      * [删除学生，把老师也删除了](#删除学生把老师也删除了)
+      * [教室里有学生，如何删除教室](#教室里有学生如何删除教室)
+      * [orphanRemoval 使用细则](#orphanremoval-使用细则)
+   * [进一步剖析 mappedBy](#进一步剖析-mappedby)
+      * [mappedBy 细节分析](#mappedby-细节分析)
+   * [使用spring data jpa关键字进行增删改查](#使用spring-data-jpa关键字进行增删改查)
+      * [如何定义 DAO 层](#如何定义-dao-层)
+      * [使用关键字自定义查询](#使用关键字自定义查询)
+   * [jpa 使用 sql 增删改查](#jpa-使用-sql-增删改查)
+   * [使用 Sort 来对数据进行一个排序](#使用-sort-来对数据进行一个排序)
+   * [jpa 的分页操作](#jpa-的分页操作)
+   * [jpa  使用 Specification](#jpa--使用-specification)
+      * [接口继承 JpaSpecificationExecutor](#接口继承-jpaspecificationexecutor)
+      * [分析 Specification](#分析-specification)
+   * [使用spring data  jpa 的 Projection (投影映射）](#使用spring-data--jpa-的-projection-投影映射)
+      * [定义一个接口](#定义一个接口)
+      * [使用自定义接口](#使用自定义接口)
+   * [继续学习，求一波关注](#继续学习求一波关注)
+
 
 
 ###  谈一谈 jpa
