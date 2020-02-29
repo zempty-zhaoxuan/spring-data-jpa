@@ -591,7 +591,8 @@ count 关键字统计：
 ```
 可以看到上述使用 find关键字加上By 和要查询的字段，这样一条查询语句就写好了，可以说相当的方便，下面附上通过关键字查询的图表，方便我们使用关键字查询：
 
-(img) (img)
+![](./img/find.png)
+![](./img/key.png)
 
 基本上我们操作数据的时候，参考上述表格的关键字就可以解决了。
 
@@ -822,3 +823,8 @@ public interface TeacherRepositoty extends JpaRepository<Teacher,Integer>, JpaSp
 这篇文章很长，也写了很久，文中表达的观点个人都经过反复的验证，力求确保准确，如果文中表达有错误之处，欢迎指正，本文案例代码来自本人 github 仓库  [spring-data-jpa](https://github.com/kickcodeman/spring-data-jpa.git)  ，可以 clone 下来运行测试即可。
 
 路漫漫其修远矣，学习的路还很长，期待和你做朋友，一起探讨，一起进步。
+
+<p align="center">
+  <img src="./img/qrcode.jpeg" alt="微信公众号">
+</p>
+
