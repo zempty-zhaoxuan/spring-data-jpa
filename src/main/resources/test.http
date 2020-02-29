@@ -65,3 +65,9 @@ GET http://localhost:8082/sort/java
 GET http://localhost:8082/page/java
 
 ###
+GET http://localhost:8082/specification/java
+
+###
+GET http://localhost:8082/projection
+
+###
