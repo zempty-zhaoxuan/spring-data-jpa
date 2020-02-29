@@ -6,17 +6,20 @@ import com.zempty.springbootjpa.entity.Student;
 import com.zempty.springbootjpa.entity.Teacher;
 import com.zempty.springbootjpa.repository.ClassRoomRepository;
 import com.zempty.springbootjpa.repository.StudentRepository;
+import com.zempty.springbootjpa.repository.TeacherProjection;
 import com.zempty.springbootjpa.repository.TeacherRepositoty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.Predicate;
 import java.util.*;
 
 @RestController
@@ -190,6 +193,32 @@ public class TestController {
         System.out.println(page.getNumberOfElements());
         System.out.println(page.getSize());
         return page;
+    }
+
+    @GetMapping("/specification/{subject}")
+    public List<Teacher> specification(@PathVariable("subject") String subject) {
+        //实例化 Specification 类
+        Specification specification = ((root, criteriaQuery, criteriaBuilder) -> {
+            // 构建查询条件
+            Predicate predicate = criteriaBuilder.equal(root.get("subject"), subject);
+            // 使用 and 连接上一个条件
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThan(root.get("age"), 21));
+            return predicate;
+        });
+        //使用查询
+        return teacherRepositoty.findAll(specification);
+    }
+
+    @GetMapping("/projection")
+    public List<TeacherProjection> projection() {
+        // 返回指定字段的数据
+        List<TeacherProjection> projections = teacherRepositoty.getTeacherNameAndAge();
+        projections.forEach(teacherProjection -> {
+            System.out.println(teacherProjection.getAge());
+            System.out.println(teacherProjection.getName());
+            System.out.println(teacherProjection.getTotal());
+        });
+        return projections;
     }
 
 
