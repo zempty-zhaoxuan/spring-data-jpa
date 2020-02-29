@@ -55,3 +55,6 @@ GET http://localhost:8082/test2/IT
 GET http://localhost:8082/sort/java
 
 ###
+GET http://localhost:8082/page/java
+
+###
