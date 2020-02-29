@@ -8,6 +8,9 @@ import com.zempty.springbootjpa.repository.ClassRoomRepository;
 import com.zempty.springbootjpa.repository.StudentRepository;
 import com.zempty.springbootjpa.repository.TeacherRepositoty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -99,7 +102,7 @@ public class TestController {
     @PostMapping("/save_teacher")
     public Teacher saveTeacher() {
         Teacher teacher = new Teacher()
-                .setName("张老师")
+                .setName("张老师3")
                 .setSubject("java")
                 .setAge(30);
         return teacherRepositoty.save(teacher);
@@ -162,6 +165,31 @@ public class TestController {
         Sort sort3 = Sort.by(orders);
         //可以传不同的 sort1,2,3 去测试效果
         return teacherRepositoty.getTeachers(subject, sort3);
+    }
+
+
+    @GetMapping("page/{subject}")
+    public Page<Teacher> getPage(@PathVariable("subject") String subject) {
+        // 第一种方法实例化 Pageable
+        Pageable pageable1 = PageRequest.of(1, 2);
+
+        //第二种实例化 Pageable
+        Sort sort = Sort.by(Sort.Direction.ASC, "age");
+        Pageable pageable2 = PageRequest.of(1, 2, sort);
+
+        //第三种实例化 Pageable
+        Pageable pageable3 = PageRequest.of(1, 2, Sort.Direction.DESC, "age");
+
+
+        //可以传入不同的 Pageable,测试效果
+        Page page = teacherRepositoty.getPage(subject, pageable3);
+        System.out.println(page.getTotalElements());
+        System.out.println(page.getTotalPages());
+        System.out.println(page.hasNext());
+        System.out.println(page.hasPrevious());
+        System.out.println(page.getNumberOfElements());
+        System.out.println(page.getSize());
+        return page;
     }
 
 
