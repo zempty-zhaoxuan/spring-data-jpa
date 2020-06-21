@@ -166,8 +166,8 @@ public class Student {
 
 jpa 是如何处理上述的三种情况呢？ 通过一个注解：**@Inheritance** 该注解仅使用在父类当中，该注解有三种策略分别对应上述的三种情况,该部分可以参考本人github 仓库 [spring-data-jpa](https://github.com/kickcodeman/spring-data-jpa.git) 测试了解 ：
 
-1.  **@Inheritance(strategy = InheritanceType.SINGLE_TABLE)** 该注解从字面来理解即可大致看出含义，只生成一个 table。现在先给出结论：该注解的使用场景是几个实体类的属性大致相同，没有什么区别，唯一区别的可能也就是类名了，这样的话我们可以考虑使用该注解，使用该注解的话我们多个实体类公用一个table ,该表由父类生成，父类中默认会生成一个 dtype 字段，用来表明该条数据是属于哪一个实体类的数据。详细使用可以参考项目包com.zempty.springbootjpa.entity.inheritance.single\_table 中的三个类，A1，B1, Group1 三个类的使用，类中的 Group1 是 A1 和 B1 的子类，A1 和 B1 中通常会使用如下的一个注解： @DiscriminatorValue 该注解只有一个 value 值用来标注在插入数据的时候 dtype 字段的值。在包 com.zempty.springbootjpa. inheritance. controller 中的 SingleController 有几个详细的测试案例，可以运行项目，测试几个接口，查看一下数据库查看使用细则。
-2. **@Inheritance(strategy = InheritanceType.JOINED)** 该注解使用后，会生成多张表。现在先给出结论性总结如下：当有一个这样的需求，一些属性是多数类都有的，比如，username,password ... ,那么我们可以考虑把共有的属性给提取出来，单独做成一个表，类中特殊属性定义在各自的类中。 详细使用可以参项目包 com.zempty. springbootjpa. entity.inheritance.joined 中的三个类 A2, B2， Group2 ,三个类的使用, Group2 是 A2 和 B2 的类，该案例将会把三个实体类都生成各自的表，当我们在添加 A2 或者 B2 数据进入数据库的时候 ，Group2 对用也会相应的添加一条数据， 子类中有一个注解 @PrimaryKeyJoinColumn 可以用来定义一个子类生成表的主键的名字，如果没有默认使用 id。  在包 com.zempty .springbootjpa. inheritance. controller 中的 JoinedController 中有几个测试案例，运行项目，即可查看感受一下使用细则。
+1.  **@Inheritance(strategy = InheritanceType.SINGLE_TABLE)** 该注解从字面来理解即可大致看出含义，只生成一个 table。现在先给出结论：该注解的使用场景是几个实体类的属性大致相同，没有什么区别，唯一区别的可能也就是类名了，这样的话我们可以考虑使用该注解，使用该注解的话我们多个实体类公用一个table ,该表由父类生成，父类中默认会生成一个 dtype 字段，用来表明该条数据是属于哪一个实体类的数据。详细使用可以参考项目包com.zempty.springbootjpa.entity.inheritance.single\_table 中的三个类，A1，B1, Group1 三个类的使用，类中的 Group1 是 A1 和 B1 的父类，A1 和 B1 中通常会使用如下的一个注解： @DiscriminatorValue 该注解只有一个 value 值用来标注在插入数据的时候 dtype 字段的值。在包 com.zempty.springbootjpa. inheritance. controller 中的 SingleController 有几个详细的测试案例，可以运行项目，测试几个接口，查看一下数据库查看使用细则。
+2. **@Inheritance(strategy = InheritanceType.JOINED)** 该注解使用后，会生成多张表。现在先给出结论性总结如下：当有一个这样的需求，一些属性是多数类都有的，比如，username,password ... ,那么我们可以考虑把共有的属性给提取出来，单独做成一个表，类中特殊属性定义在各自的类中。 详细使用可以参项目包 com.zempty. springbootjpa. entity.inheritance.joined 中的三个类 A2, B2， Group2 ,三个类的使用, Group2 是 A2 和 B2 的父类，该案例将会把三个实体类都生成各自的表，当我们在添加 A2 或者 B2 数据进入数据库的时候 ，Group2 对用也会相应的添加一条数据， 子类中有一个注解 @PrimaryKeyJoinColumn 可以用来定义一个子类生成表的主键的名字，如果没有默认使用 id。  在包 com.zempty .springbootjpa. inheritance. controller 中的 JoinedController 中有几个测试案例，运行项目，即可查看感受一下使用细则。
 3.  **@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)** 只有子类生成 table 。 现在先给出一个结论：父类中的属性是共有属性，父类不会生成 table ,子类定义自己特有的属性，子类生成的 table 会有父类中定义的属性字段。这里需要注意使用该注解的时候父类中的主键生成策略不可以是@GeneratedValue(strategy = GenerationType.IDENTITY) ，这里我定义成了 @GeneratedValue(strategy = GenerationType.AUTO) ，否则会报错。 详细使用可以参考包 com.zempty .springbootjpa..entity.inheritance.per\_table 中的三个类 A3,B3,Group3 的注解使用，Group3 是 A3 和 B3 的 父类，该案例，Group3 将不会被生成 table，但是其中的属性将会出现在每一个子类生成的 table 当中。在包 com.zempty .springbootjpa. inheritance. controller 中的 PerController 中有几个测试案例，运行项目，即可查看感受一下使用细则。 
 
 还有一个注解在继承这里需要提到一下，那就是 **@MappedSuperclass** 这个注解，该注解也是使用在父类当中，父类不需要使用 @Entity 注解，该注解效果是同上面提到的第三种 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)  使用类似，这里就不再过多解释了。
@@ -189,7 +189,7 @@ jpa 是通过一系列的注解来实现类之间的关联关系的，下面我�
 
 有这样四个实体类：学生， 教室，老师，课桌
 
-1. 一个学生通常只有一个课桌，一个课桌通常给一个学生作，这里学生和课桌的关系就是互为 @OneToOne
+1. 一个学生通常只有一个课桌，一个课桌通常给一个学生使用，这里学生和课桌的关系就是互为 @OneToOne
 2. 一个教室通常可以容纳很多的学生，教室到学生的关系就可以定义为 @OneToMany
 3. 很多学生容纳在一个教室当中，学生到教室的关系可以定义为@ManyToOne
 4. 一个学生可以有很多的老师，一个老师可以有很多的学生，这里学生和老师的关系就互为 @ManyToMany
@@ -254,7 +254,7 @@ public class Desk {
 }
 ```
 
-上述的两个实体类展示了一对一的关联关系，彼此实体类中互相关联彼此，这里有一点需要提出：**在一对一的关系维护中通常需要一个第三张表来维护这个关联关系，在 Student 类中定义了一个 @JoinTable 注解 ，该注解是用来生成第三张表的，如果没有该注解，就不会有第三张表，仅仅只是在 stu 表中生成一个外键**
+上述的两个实体类展示了一对一的关联关系，实体类中互相关联彼此，这里有一点需要提出：**在一对一的关系维护中通常需要一个第三张表来维护这个关联关系，在 Student 类中定义了一个 @JoinTable 注解 ，该注解是用来生成第三张表的，如果没有该注解，就不会有第三张表，仅仅只是在 stu 表中生成一个外键**
 **desk\_id 用来维护关系。** 在 Desk 类，@OneToOne 注解中有一个 mappedBy = “desk” 的属性，该字段说明  Desk 类放弃主键的维护，关于 **mappedBy** 这个属性下文也会重点谈到。
 
 ####  @OneToMany
@@ -326,7 +326,7 @@ public class Teacher {
     private Set<Student> students;
 }
 ```
-该 Teacher 类的 @ManyToMany 的属性使用了 mappedBy 表示该类放弃主键的维护,如果没有该属性会产生一个多余的表 teacher\_students 表，通常我们会在对多多的其中一方添加一个 mappedBy 属性，避免多余的表的产生 。
+该 Teacher 类的 @ManyToMany 的属性使用了 mappedBy 表示该类放弃主键的维护,如果没有该属性会产生一个多余的表 teacher\_students 表，通常我们会在多对多的其中一方添加一个 mappedBy 属性，避免多余的表的产生 。
 
 学生类 Student 关键代码如下所示：
 ```java
