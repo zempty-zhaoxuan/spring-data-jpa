@@ -47,6 +47,7 @@ jpa 并不是一个框架，是一类框架的总称，持久层框架 Hibernate
 ### spring data jpa常用的 jpa 的配置
 
 下面所有演示的代码均来自我个人 github 的 spring-data-jpa 仓库，仓库地址：[spring-data-jpa](https://github.com/kickcodeman/spring-data-jpa.git) ， 读者可以clone 下来运行本项目，验证下面讲的所有知识点。
+项目使用 knife4j 代替 swagger, 运行项目本地访问： http://localhost:8082/doc.html,可查看本地接口。
 
 下面把spring boot 项目关于 jpa 的常用配置 application.properties 配置如下：
 ```java
