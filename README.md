@@ -857,8 +857,3 @@ public interface TeacherRepositoty extends JpaRepository<Teacher,Integer>, JpaSp
 这篇文章很长，也写了很久，文中表达的观点个人都经过反复的验证，力求确保准确，如果文中表达有错误之处，欢迎指正，本文案例代码来自本人 github 仓库  [spring-data-jpa](https://github.com/kickcodeman/spring-data-jpa.git)  ，可以 clone 下来运行测试即可。
 
 路漫漫其修远矣，学习的路还很长，期待和你做朋友，一起探讨，一起进步。
-
-<p align="center">
-  <img src="./img/qrcode.jpeg" alt="微信公众号">
-</p>
-
